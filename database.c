@@ -1,24 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "database.h"
 
-const char* job_name(enum JobType job) {
-    switch (job) {
-        case JOB_ENGINEER: return "ENGINEER";
-        case JOB_MEDIC: return "MEDIC";
-        case JOB_RANGER: return "RANGER";
-        case JOB_TECHNICIAN: return "TECHNICIAN";
-        case JOB_BIOLOGIST: return "BIOLOGIST";
-        case JOB_MECHANIC: return "MECHANIC";
-        default: return "UNKNOWN";
+Node* push_back(Node* head, struct Person person) {
+    Node* n = calloc(1, sizeof(Node));
+    n->person = person;
+    if (head == NULL)
+        return n;
+    Node* p = head;
+    while (p->next != NULL) {
+        p = p->next;
     }
+    p->next = n;
+    return head;
 }
 
-const char* status_name(enum Status status) {
-    switch (status) {
-        case STATUS_ACTIVE: return "ACTIVE";
-        case STATUS_ILL: return "ILL";
-        case STATUS_INJURED: return "INJURED";
-        case STATUS_LOST: return "LOST";
-        case STATUS_OUT: return "OUT";
-        default: return "UNKNOWN";
+Node* find_list(Node* head, char word[]) {
+    Node* find = NULL;
+    Node* current = head;
+    while (current != NULL) {
+        if (strstr(current->person.name, word) != NULL) {
+            find = push_back(find, current->person);
+        }
+        current = current->next;
     }
+    return find;
 }
