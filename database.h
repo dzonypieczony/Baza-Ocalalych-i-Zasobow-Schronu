@@ -7,7 +7,8 @@ enum JobType {
     JOB_RANGER,
     JOB_TECHNICIAN,
     JOB_BIOLOGIST,
-    JOB_MECHANIC
+    JOB_MECHANIC,
+    JOB_OTHER
 };
 
 enum Status {
@@ -21,7 +22,7 @@ enum Status {
 struct Person {
     char name[50];
     enum JobType job;
-    int food;
+    int food[2];
     int risk;
     enum Status status;
 };
@@ -31,8 +32,18 @@ typedef struct Node {
     struct Node * next;
 } Node;
 
-const char* job_name(enum JobType job);
+Node* push_back(Node* head, struct Person person);
 
-const char* status_name(enum Status status);
+Node* add_person(Node* head);
+
+Node* find_list(Node* head, char word[]);
+
+Node* modify_list(Node* head, char word[]);
+
+Node* insert_sorted(Node* head, struct Person person);
+
+Node* sort_list(Node* head);
+
+Node* delete_person(Node* head, char word[]);
 
 #endif

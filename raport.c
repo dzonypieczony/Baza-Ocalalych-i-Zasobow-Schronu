@@ -9,6 +9,7 @@ const char* job_name(enum JobType job) {
         case JOB_TECHNICIAN: return "TECHNICIAN";
         case JOB_BIOLOGIST: return "BIOLOGIST";
         case JOB_MECHANIC: return "MECHANIC";
+        case JOB_OTHER: return "OTHER";
         default: return "UNKNOWN";
     }
 }
@@ -28,8 +29,8 @@ void show_raport(Node* head) {
     Node* p = head;
     while (p != NULL) {
         struct Person person = p->person;
-        printf("\n[IMIE: %s] Specjalnosc: %s, Ilosc racji: %d, Poziom ryzyka: %d, Status: %s", person.name, job_name(person.job),
-            person.food, person.risk, status_name(person.status));
+        printf("\n[IMIE: %s] Specjalnosc: %s, Ilosc racji: woda: %d zywnosc: %d, Poziom ryzyka: %d, Status: %s", person.name, job_name(person.job),
+            person.food[0], person.food[1], person.risk, status_name(person.status));
         p = p->next;
     }
 }
