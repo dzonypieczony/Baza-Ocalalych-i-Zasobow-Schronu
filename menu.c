@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
 
-int menu() {
+int show_menu() {
     int choice = 9;
     while (choice) {
         printf("\n============================================\n"
@@ -15,6 +15,7 @@ int menu() {
                "8 - Zapisz baze do pliku\n"
                "0 - Wylacz system\n"
                "============================================\n");
+        printf("\nPodaj wybor: ");
         while (scanf("%d", &choice) == 0) {
             while (getchar() != '\n')
                 printf("\nPodaj wartosc liczbowa: ");
