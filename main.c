@@ -13,7 +13,7 @@ int main(void) {
     while (1) {
         int choice = show_menu();
         if (choice == 1) {
-            head = read_file(head, "baza.txt");
+            head = read_file(head, "file.txt");
         }
         else if (choice == 2) {
             show_raport(head);

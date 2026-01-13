@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "database.h"
+#include "walidacja.h"
 
 Node* push_back(Node* head, struct Person person) {
     Node* n = calloc(1, sizeof(Node));
@@ -24,12 +25,7 @@ Node* add_person(Node* head) {
     int food[2];
     int risk;
     printf("Wpisz imie: ");
-    fgets(name, sizeof(name), stdin);
-    for (int i = 0; i < strlen(name); i++) {
-        if (name[i] == '\n') {
-            name[i] = '\0';
-        }
-    }
+    walidacja_tekst(name, 50);
     printf("\n1 - ENGINEER"
     "\n2 - MEDIC"
     "\n3 - RANGER"
@@ -38,20 +34,20 @@ Node* add_person(Node* head) {
     "\n6 - MECHANIC"
     "\n7 - OTHER");
     printf("\nWpisz zawod: ");
-    scanf("%d", &job);
+    job = walidacja_liczba(1, 7);
     printf("\n1 - ACTIVE"
     "\n2 - ILL"
     "\n3 - INJURED"
     "\n4 - OUT"
     "\n5 - LOST");
     printf("\nWpisz status: ");
-    scanf("%d", &status);
+    status = walidacja_liczba(1, 5);
     printf("\nWpisz ilosc wody (0-100): ");
-    scanf("%d", &food[0]);
+    food[0] = walidacja_liczba(0, 100);
     printf("\nWpisz ilosc zywnosci (0-100): ");
-    scanf("%d", &food[1]);
+    food[1] = walidacja_liczba(0, 100);
     printf("\nWpisz poziom ryzyka: ");
-    scanf("%d", &risk);
+    risk = walidacja_liczba(0, 10);
     struct Person person;
     strcpy(person.name, name);
     person.job = job-1;
@@ -80,17 +76,13 @@ Node* modify_list(Node* head, char word[]) {
     while (current != NULL) {
         if (strcmp(current->person.name, word) == 0) {
             printf("\nPodaj nowa ilosc wody (0-100): ");
-            scanf("%d", &current->person.food[0]);
+            current->person.food[0] = walidacja_liczba(0, 100);
             printf("\nPodaj nowa ilosc zywnosci (0-100): ");
-            scanf("%d", &current->person.food[1]);
+            current->person.food[1] = walidacja_liczba(0, 100);
             printf("\nPodaj nowy poziom ryzyka: ");
-            scanf("%d", &current->person.risk);
-            int nowyStatus = 6;
-            while (nowyStatus > 5) {
-                printf("\nPodaj nowy status (1-Active, 2-Ill, 3-Injured, 4-Out, 5-Lost): ");
-                scanf("%d", &nowyStatus);
-            }
-            current->person.status = nowyStatus-1;
+            current->person.risk = walidacja_liczba(0, 10);
+            printf("\nPodaj nowy status (1-Active, 2-Ill, 3-Injured, 4-Out, 5-Lost): ");
+            current->person.status = walidacja_liczba(1, 5);
         }
         current = current->next;
     }
