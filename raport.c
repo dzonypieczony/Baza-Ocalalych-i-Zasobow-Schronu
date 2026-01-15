@@ -27,10 +27,14 @@ const char* status_name(enum Status status) {
 
 void show_raport(Node* head) {
     Node* p = head;
+    if (p == NULL) {
+        printf("\nBaza jest pusta");
+    }
     while (p != NULL) {
         struct Person person = p->person;
-        printf("\n[IMIE: %s] Specjalnosc: %s, Ilosc racji: woda: %d zywnosc: %d, Poziom ryzyka: %d, Status: %s", person.name, job_name(person.job),
-            person.food[0], person.food[1], person.risk, status_name(person.status));
+        printf("\n[IMIE: %s] Specjalnosc: %s, Ilosc racji: woda: %d zywnosc: %d, Poziom zdrowia: %d, "
+               "Poziom ryzyka: %d,\n    Status: %s", person.name, job_name(person.job),
+            person.food[0], person.food[1], person.health, person.risk, status_name(person.status));
         p = p->next;
     }
 }

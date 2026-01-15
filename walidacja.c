@@ -7,7 +7,7 @@ int walidacja_liczba(int min, int max) {
     int liczba;
     while (1) {
         if (scanf("%d", &liczba) == 1) {
-            if (liczba >= min || liczba <= max) {
+            if (liczba >= min && liczba <= max) {
                 while (getchar() != '\n');
                 return liczba;
             }

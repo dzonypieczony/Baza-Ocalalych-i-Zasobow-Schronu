@@ -23,6 +23,7 @@ struct Person {
     char name[50];
     enum JobType job;
     int food[2];
+    int health;
     int risk;
     enum Status status;
 };

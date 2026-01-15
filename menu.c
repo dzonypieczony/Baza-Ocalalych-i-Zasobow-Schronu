@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
+#include "walidacja.h"
 
 int show_menu() {
     int choice = 9;
@@ -16,16 +17,8 @@ int show_menu() {
                "0 - Wylacz system\n"
                "============================================\n");
         printf("\nPodaj wybor: ");
-        while (scanf("%d", &choice) == 0) {
-            while (getchar() != '\n')
-                printf("\nPodaj wartosc liczbowa: ");
-        }
-        if (choice > 8) {
-            printf("\nBledna wartosc, podaj ponownie");
-        }
-        else {
-            break;
-        }
+        choice = walidacja_liczba(0, 8);
+        break;
     }
     return choice;
 }

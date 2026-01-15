@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include "pliki.h"
-
 #include <stdlib.h>
 #include <string.h>
-
 #include "database.h"
 
 Node* read_file(Node* head, char* file_name) {
@@ -25,6 +23,8 @@ Node* read_file(Node* head, char* file_name) {
             token = strtok(NULL, ";");
             nowaOsoba.food[1] = atoi(token);
             token = strtok(NULL, ";");
+            nowaOsoba.health = atoi(token);
+            token = strtok(NULL, ";");
             nowaOsoba.risk = atoi(token);
             token = strtok(NULL, ";");
             nowaOsoba.status = atoi(token);
@@ -43,11 +43,12 @@ void write_file(Node* head, char* file_name) {
     }
     Node* current = head;
     while (current != NULL) {
-        fprintf(plik, "%s;%d;%d;%d;%d;%d\n",
+        fprintf(plik, "%s;%d;%d;%d;%d;%d;%d\n",
                 current->person.name,
                 (int)current->person.job,    // rzutowanie na int dla pewności
                 current->person.food[0],
                 current->person.food[1],
+                current->person.health,
                 current->person.risk,
                 (int)current->person.status); // rzutowanie na int
         current = current->next;

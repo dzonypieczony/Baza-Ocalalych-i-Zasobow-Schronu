@@ -22,10 +22,10 @@ int main(void) {
             head = add_person(head);
         }
         else if (choice == 4) {
-            char word[50];
+            char word[100];
             while (getchar() != '\n');
             printf("\nPodaj imie jakie chcesz wyszukac: ");
-            fgets(word, 50, stdin);
+            fgets(word, 100, stdin);
             for (int i = 0; i < strlen(word); i++) {
                 if (word[i] == '\n') {
                     word[i] = '\0';
@@ -36,10 +36,10 @@ int main(void) {
             free_list(find);
         }
         else if (choice == 5) {
-            char word[50];
+            char word[100];
             while (getchar() != '\n');
-            printf("\nPodaj imie czlowieka, ktorego dane chcesz zmodyfikowac: ");
-            fgets(word, 50, stdin);
+            printf("\nPodaj imie osoby, ktorej dane chcesz zmodyfikowac: ");
+            fgets(word, 100, stdin);
             for (int i = 0; i < strlen(word); i++) {
                 if (word[i] == '\n') {
                     word[i] = '\0';
@@ -51,10 +51,10 @@ int main(void) {
             head = sort_list(head);
         }
         else if (choice == 7) {
-            char word[50];
+            char word[100];
             while (getchar() != '\n');
-            printf("\nPodaj imie czlowieka, ktorego chcesz usunac z bazy: ");
-            fgets(word, 50, stdin);
+            printf("\nPodaj imie osoby, ktora chcesz usunac z bazy: ");
+            fgets(word, 100, stdin);
             for (int i = 0; i < strlen(word); i++) {
                 if (word[i] == '\n') {
                     word[i] = '\0';

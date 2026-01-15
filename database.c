@@ -18,14 +18,15 @@ Node* push_back(Node* head, struct Person person) {
 }
 
 Node* add_person(Node* head) {
-    char name[50];
+    char name[100];
     while (getchar() != '\n');
     enum JobType job = 8;
     enum Status status = 6;
     int food[2];
+    int health;
     int risk;
     printf("Wpisz imie: ");
-    walidacja_tekst(name, 50);
+    walidacja_tekst(name, 100);
     printf("\n1 - ENGINEER"
     "\n2 - MEDIC"
     "\n3 - RANGER"
@@ -46,7 +47,9 @@ Node* add_person(Node* head) {
     food[0] = walidacja_liczba(0, 100);
     printf("\nWpisz ilosc zywnosci (0-100): ");
     food[1] = walidacja_liczba(0, 100);
-    printf("\nWpisz poziom ryzyka: ");
+    printf("\nWpisz poziom zdrowia (0-100): ");
+    health = walidacja_liczba(0, 100);
+    printf("\nWpisz poziom ryzyka (0-10): ");
     risk = walidacja_liczba(0, 10);
     struct Person person;
     strcpy(person.name, name);
@@ -54,6 +57,7 @@ Node* add_person(Node* head) {
     person.status = status-1;
     person.food[0] = food[0];
     person.food[1] = food[1];
+    person.health = health;
     person.risk = risk;
     head = push_back(head, person);
     return head;
@@ -79,10 +83,12 @@ Node* modify_list(Node* head, char word[]) {
             current->person.food[0] = walidacja_liczba(0, 100);
             printf("\nPodaj nowa ilosc zywnosci (0-100): ");
             current->person.food[1] = walidacja_liczba(0, 100);
-            printf("\nPodaj nowy poziom ryzyka: ");
+            printf("\nPodaj nowy poziom zdrowia (0-100): ");
+            current->person.health = walidacja_liczba(0, 100);
+            printf("\nPodaj nowy poziom ryzyka (0-10): ");
             current->person.risk = walidacja_liczba(0, 10);
             printf("\nPodaj nowy status (1-Active, 2-Ill, 3-Injured, 4-Out, 5-Lost): ");
-            current->person.status = walidacja_liczba(1, 5);
+            current->person.status = walidacja_liczba(1, 5)-1;
         }
         current = current->next;
     }
