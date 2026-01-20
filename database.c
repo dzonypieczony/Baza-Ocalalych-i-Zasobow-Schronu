@@ -19,7 +19,7 @@ Node* push_back(Node* head, struct Person person) {
 
 Node* add_person(Node* head) {
     char name[100];
-    while (getchar() != '\n');
+    /*while (getchar() != '\n');*/
     enum JobType job = 8;
     enum Status status = 6;
     int food[2];
@@ -77,6 +77,7 @@ Node* find_list(Node* head, char word[]) {
 
 Node* modify_list(Node* head, char word[]) {
     Node* current = head;
+    int i = 0;
     while (current != NULL) {
         if (strcmp(current->person.name, word) == 0) {
             printf("\nPodaj nowa ilosc wody (0-100): ");
@@ -89,8 +90,12 @@ Node* modify_list(Node* head, char word[]) {
             current->person.risk = walidacja_liczba(0, 10);
             printf("\nPodaj nowy status (1-Active, 2-Ill, 3-Injured, 4-Out, 5-Lost): ");
             current->person.status = walidacja_liczba(1, 5)-1;
+            i++;
         }
         current = current->next;
+    }
+    if (i == 0) {
+        printf("\nNie ma takiej osoby");
     }
     return head;
 }
@@ -112,6 +117,10 @@ Node* insert_sorted(Node* head, struct Person person) {
 }
 
 Node* sort_list(Node* head) {
+    if (head == NULL) {
+        printf("\nBaza jest pusta");
+        return head;
+    }
     Node* sorted = NULL;
     while (head != NULL) {
         Node* next = head->next;
@@ -120,27 +129,33 @@ Node* sort_list(Node* head) {
         free(head);
         head = next;
     }
+    printf("\nSortowanie przebieglo pomyslnie");
     return sorted;
 }
 
 Node* delete_person(Node* head, char word[]) {
-    if (head == NULL) {
-        return NULL;
-    }
     Node* current = head;
     Node* prev = NULL;
     if (strcmp(current->person.name, word) == 0) {
+        if (current->person.status != 4) {
+            printf("\nNie mozna usunac tej osoby (jej status to nie LOST)");
+            return head;
+        }
         Node* temp = head;
         head = head->next;
         free(temp);
+        printf("\nUsunieto zapis z bazy");
         return head;
     }
     while (current->next != NULL && strcmp(current->person.name, word) != 0) {
         prev = current;
         current = current->next;
     }
+    if (current->next == NULL) {
+        printf("\nNie ma takiej osoby");
+    }
     if (current->person.status != 4) {
-        printf("\nNie mozna usunac tej osoby");
+        printf("\nNie mozna usunac tej osoby (jej status to nie LOST)");
         return head;
     }
     if (current->next == NULL) {
@@ -148,6 +163,7 @@ Node* delete_person(Node* head, char word[]) {
     }
     prev->next = current->next;
     free(current);
+    printf("\nUsunieto zapis z bazy");
     return head;
 }
 
