@@ -10,7 +10,7 @@ Node* read_file(Node* head, char* file_name) {
         printf("\nBlad: Nie mozna otworzyc pliku %s", file_name);
         return head;
     }
-    char bufor[128]; // Bufor na jedną linię tekstu
+    char bufor[128];
     while (fgets(bufor, sizeof(bufor), plik)) {
         struct Person nowaOsoba;
         char* token = strtok(bufor, ";");
@@ -45,12 +45,12 @@ void write_file(Node* head, char* file_name) {
     while (current != NULL) {
         fprintf(plik, "%s;%d;%d;%d;%d;%d;%d\n",
                 current->person.name,
-                (int)current->person.job,    // rzutowanie na int dla pewności
+                current->person.job,
                 current->person.food[0],
                 current->person.food[1],
                 current->person.health,
                 current->person.risk,
-                (int)current->person.status); // rzutowanie na int
+                current->person.status);
         current = current->next;
     }
     fclose(plik);

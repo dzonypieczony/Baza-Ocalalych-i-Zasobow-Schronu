@@ -3,25 +3,25 @@
 
 const char* job_name(enum JobType job) {
     switch (job) {
-        case JOB_ENGINEER: return "ENGINEER";
-        case JOB_MEDIC: return "MEDIC";
-        case JOB_RANGER: return "RANGER";
-        case JOB_TECHNICIAN: return "TECHNICIAN";
-        case JOB_BIOLOGIST: return "BIOLOGIST";
-        case JOB_MECHANIC: return "MECHANIC";
-        case JOB_OTHER: return "OTHER";
-        default: return "UNKNOWN";
+        case JOB_ENGINEER: return "INZYNIER";
+        case JOB_MEDIC: return "MEDYK";
+        case JOB_RANGER: return "ZWIADOWCA";
+        case JOB_TECHNICIAN: return "TECHNIK";
+        case JOB_BIOLOGIST: return "BIOLOG";
+        case JOB_MECHANIC: return "MECHANIK";
+        case JOB_OTHER: return "INNY";
+        default: return "NIEZNANY";
     }
 }
 
 const char* status_name(enum Status status) {
     switch (status) {
-        case STATUS_ACTIVE: return "ACTIVE";
-        case STATUS_ILL: return "ILL";
-        case STATUS_INJURED: return "INJURED";
-        case STATUS_LOST: return "LOST";
-        case STATUS_OUT: return "OUT";
-        default: return "UNKNOWN";
+        case STATUS_ACTIVE: return "AKTYWNY/A";
+        case STATUS_ILL: return "CHORY/A";
+        case STATUS_INJURED: return "POSZKODOWANY/A";
+        case STATUS_LOST: return "ZAGINIONY/A";
+        case STATUS_OUT: return "POZA SCHRONEM";
+        default: return "NIEZNANY";
     }
 }
 

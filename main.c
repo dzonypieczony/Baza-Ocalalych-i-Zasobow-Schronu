@@ -13,7 +13,7 @@ int main(void) {
     while (1) {
         int choice = show_menu();
         if (choice == 1) {
-            head = read_file(head, "file.txt");
+            head = read_file(head, "baza_ocalalych.txt");
         }
         else if (choice == 2) {
             show_raport(head);
@@ -27,8 +27,7 @@ int main(void) {
             }
             else {
                 char word[100];
-                /*while (getchar() != '\n');*/
-                printf("\nPodaj imie jakie chcesz wyszukac: ");
+                printf("\nPodaj imie lub poczatek imienia jakie chcesz wyszukac: ");
                 fgets(word, 100, stdin);
                 for (int i = 0; i < strlen(word); i++) {
                     if (word[i] == '\n') {
@@ -46,7 +45,6 @@ int main(void) {
             }
             else {
                 char word[100];
-                /*while (getchar() != '\n');*/
                 printf("\nPodaj imie osoby, ktorej dane chcesz zmodyfikowac: ");
                 fgets(word, 100, stdin);
                 for (int i = 0; i < strlen(word); i++) {
@@ -66,7 +64,6 @@ int main(void) {
             }
             else {
                 char word[100];
-                /*while (getchar() != '\n');*/
                 printf("\nPodaj imie osoby, ktora chcesz usunac z bazy: ");
                 fgets(word, 100, stdin);
                 for (int i = 0; i < strlen(word); i++) {
@@ -82,7 +79,7 @@ int main(void) {
                 printf("\nBaza jest pusta");
             }
             else {
-                write_file(head, "file.txt");
+                write_file(head, "baza_ocalalych.txt");
             }
         }
         else if (choice == 0) {

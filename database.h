@@ -47,6 +47,6 @@ Node* sort_list(Node* head);
 
 Node* delete_person(Node* head, char word[]);
 
-Node* free_list(Node* head);
+void free_list(Node* head);
 
 #endif

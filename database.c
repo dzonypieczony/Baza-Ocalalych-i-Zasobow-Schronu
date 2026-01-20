@@ -19,7 +19,6 @@ Node* push_back(Node* head, struct Person person) {
 
 Node* add_person(Node* head) {
     char name[100];
-    /*while (getchar() != '\n');*/
     enum JobType job = 8;
     enum Status status = 6;
     int food[2];
@@ -27,20 +26,20 @@ Node* add_person(Node* head) {
     int risk;
     printf("Wpisz imie: ");
     walidacja_tekst(name, 100);
-    printf("\n1 - ENGINEER"
-    "\n2 - MEDIC"
-    "\n3 - RANGER"
-    "\n4 - TECHNICIAN"
-    "\n5 - BIOLOGIST"
-    "\n6 - MECHANIC"
-    "\n7 - OTHER");
+    printf("\n1 - Inzynier"
+    "\n2 - Medyk"
+    "\n3 - Zwiadowca"
+    "\n4 - Technik"
+    "\n5 - Biolog"
+    "\n6 - Mechanik"
+    "\n7 - Inny");
     printf("\nWpisz zawod: ");
     job = walidacja_liczba(1, 7);
-    printf("\n1 - ACTIVE"
-    "\n2 - ILL"
-    "\n3 - INJURED"
-    "\n4 - OUT"
-    "\n5 - LOST");
+    printf("\n1 - Aktywny/a"
+    "\n2 - Chory/a"
+    "\n3 - Poszkodowany/a"
+    "\n4 - Poza schronem/a"
+    "\n5 - Zaginiony/a");
     printf("\nWpisz status: ");
     status = walidacja_liczba(1, 5);
     printf("\nWpisz ilosc wody (0-100): ");
@@ -80,6 +79,8 @@ Node* modify_list(Node* head, char word[]) {
     int i = 0;
     while (current != NULL) {
         if (strcmp(current->person.name, word) == 0) {
+            printf("\nPodaj nowy zawod osoby (1-Inzynier, 2-Medyk, 3-Zwiadowca, 4-Technik, 5-Biolog, 6-Mechanik, 7-Inny): ");
+            current->person.job = walidacja_liczba(1, 7)-1;
             printf("\nPodaj nowa ilosc wody (0-100): ");
             current->person.food[0] = walidacja_liczba(0, 100);
             printf("\nPodaj nowa ilosc zywnosci (0-100): ");
@@ -88,7 +89,7 @@ Node* modify_list(Node* head, char word[]) {
             current->person.health = walidacja_liczba(0, 100);
             printf("\nPodaj nowy poziom ryzyka (0-10): ");
             current->person.risk = walidacja_liczba(0, 10);
-            printf("\nPodaj nowy status (1-Active, 2-Ill, 3-Injured, 4-Out, 5-Lost): ");
+            printf("\nPodaj nowy status (1-Aktywny/a, 2-Chory/a, 3-Poszkodowany/a, 4-Poza schronem, 5-Zaginiony/a): ");
             current->person.status = walidacja_liczba(1, 5)-1;
             i++;
         }
@@ -138,7 +139,7 @@ Node* delete_person(Node* head, char word[]) {
     Node* prev = NULL;
     if (strcmp(current->person.name, word) == 0) {
         if (current->person.status != 4) {
-            printf("\nNie mozna usunac tej osoby (jej status to nie LOST)");
+            printf("\nNie mozna usunac tej osoby (jej status to nie Zaginiony/a)");
             return head;
         }
         Node* temp = head;
@@ -147,18 +148,16 @@ Node* delete_person(Node* head, char word[]) {
         printf("\nUsunieto zapis z bazy");
         return head;
     }
-    while (current->next != NULL && strcmp(current->person.name, word) != 0) {
+    while (current != NULL && strcmp(current->person.name, word) != 0) {
         prev = current;
         current = current->next;
     }
-    if (current->next == NULL) {
+    if (current == NULL) {
         printf("\nNie ma takiej osoby");
-    }
-    if (current->person.status != 4) {
-        printf("\nNie mozna usunac tej osoby (jej status to nie LOST)");
         return head;
     }
-    if (current->next == NULL) {
+    if (current->person.status != 4) {
+        printf("\nNie mozna usunac tej osoby (jej status to nie Zaginiony/a)");
         return head;
     }
     prev->next = current->next;
@@ -167,12 +166,11 @@ Node* delete_person(Node* head, char word[]) {
     return head;
 }
 
-Node* free_list(Node* head) {
+void free_list(Node* head) {
     Node* p = head;
     while (p != NULL) {
         Node* next = p->next;
         free(p);
         p = next;
     }
-    return NULL;
 }
