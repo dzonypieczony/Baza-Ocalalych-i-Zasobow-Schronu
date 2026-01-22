@@ -7,8 +7,9 @@
 Node* push_back(Node* head, struct Person person) {
     Node* n = calloc(1, sizeof(Node));
     n->person = person;
-    if (head == NULL)
-        return n;
+    if (head == NULL) {
+    return n;
+    }
     Node* p = head;
     while (p->next != NULL) {
         p = p->next;
@@ -125,7 +126,6 @@ Node* sort_list(Node* head) {
     Node* sorted = NULL;
     while (head != NULL) {
         Node* next = head->next;
-        //
         sorted = insert_sorted(sorted, head->person);
         free(head);
         head = next;

@@ -35,7 +35,12 @@ int main(void) {
                     }
                 }
                 Node* find = find_list(head, word);
-                show_raport(find);
+                if (find == NULL) {
+                    printf("\nNie znaleziono podanego imienia");
+                }
+                else {
+                    show_raport(find);
+                }
                 free_list(find);
             }
         }

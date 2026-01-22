@@ -25,7 +25,7 @@ int walidacja_liczba(int min, int max) {
 char* walidacja_tekst(char tekst[], int rozmiar) {
     while (1) {
         fgets(tekst, rozmiar, stdin);
-        if (strlen(tekst) == 0) {
+        if (strlen(tekst) == 1) {
             printf("\nMusisz wpisac imie: ");
         }
         else {
